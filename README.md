@@ -70,5 +70,36 @@ run command herebelow:
 ```sh
 $java -jar FenixLighting-1.0-jar-with-dependencies.jar 10000 3 500 10 1500 7 11000
 ```
+## Sample run
+here is a sample run taking 
+- DailyRate 1000 starts in 3 days for loan1 (R1,D1) (1000,3)
+- DailyRate 500 starts in 10 days for loan2 (R2,D2) (500,10)
+- DailyRate 1500 starts in 7 datys for loan3 (R3,D3) (1500,7)
+- Amount paid (K) (21000)
+```sh
+$ java -jar FenixLighting-1.0-jar-with-dependencies.jar 1000 3 500 10 1500 7 21000
+Running program with arguments:
+R1=1000,D1=3,R2=500,D2=10,R3=1500D3=,7,K=21000
+Amount Paid: 21000/-
+Taking Customer loans in the order: [Loan{dailyRate=1000, startsInDays=3}, Loan{dailyRate=1500, startsInDays=7}, Loan{dailyRate=500, startsInDays=10}]
 
+Computing Days of Lighting: Loan{dailyRate=1000, startsInDays=3}
+Charge for loan1: 4000/-
+Current account balance after loan1 : 17000/-
+Days of Power: 4
+Total Days of Power after loan1 : 4
 
+Computing Days of Lighting: Loan{dailyRate=1500, startsInDays=7}
+Charge for loan2: 4500/-
+Current account balance after loan2: 12500/-
+Days of Power: 3
+Total Days of Power after loan2: 7
+
+Computing Days of Lighting: Loan{dailyRate=500, startsInDays=10}
+Charge for loan2: 12500/-
+Current account balance after loan3: 0/-
+Days of Power: 25
+Total Days of Power after loan3: 32
+
+Total Computed Days of Power: 32
+```
