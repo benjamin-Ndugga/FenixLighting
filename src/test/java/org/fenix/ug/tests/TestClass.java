@@ -9,10 +9,7 @@ import static org.fenix.ug.Main.get_days_of_power;
  */
 public class TestClass {
     
-    public static void main(String[] args) {
-        int x=(11000/10000);
-        System.out.println(x);
-    }
+ 
 
     public void testDaysOfPowerMethod() {
         assertEquals(get_days_of_power(0, 0, 0, 0, 0, 0, 0), 0);

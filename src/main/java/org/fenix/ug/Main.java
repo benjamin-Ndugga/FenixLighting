@@ -10,10 +10,37 @@ import java.util.Collections;
 public class Main {
 
     public static void main(String[] args) {
-        get_days_of_power(1000, 3, 500, 10, 1500, 7, 21000);
-        //get_days_of_power(3000, 3, 500, 10, 1500, 7, 700000);
-        //get_days_of_power(1300, 0, 500, 0, 1500, 7, 10000);
-        //get_days_of_power(10000, 3, 500, 10, 1500, 7, 11000);
+        try {
+            //get_days_of_power(1000, 3, 500, 10, 1500, 7, 21000);
+            //get_days_of_power(3000, 3, 500, 10, 1500, 7, 700000);
+            //get_days_of_power(1300, 0, 500, 0, 1500, 7, 10000);
+            //get_days_of_power(10000, 3, 500, 10, 1500, 7, 11000);
+
+            if (args.length != 7) {
+                System.out.println("Missing arguments:");
+                System.out.println(">>R1 D1 R2 D2 R3 D3 K"+"\nWhere:");
+                
+                System.out.println("R1 - daily rate1 loan1");
+                System.out.println("D1 - start in days loan1");
+                System.out.println("R2 - daily rate1 loan2");
+                System.out.println("D2 - start in days loan2");
+                System.out.println("R3 - daily rate1 loan3");
+                System.out.println("D3 - start in days loan3");
+                System.out.println("K - amount paid");
+
+                System.exit(0);
+            }
+
+            System.out.println("Running program with arguments:");
+            System.out.println("R1="+args[0]+",D1="+args[1]+",R2="+args[2]+",D2="+args[3]+",R3=" +args[4]+"D3=,"+args[5]+",K=" +args[6]);
+            
+            get_days_of_power(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]), Integer.parseInt(args[6]));
+        } catch (NumberFormatException ex) {
+            
+            System.out.println("Invalid argument: "+ex.getLocalizedMessage());
+            
+            System.out.println("R1="+args[0]+",D1="+args[1]+",R2="+args[2]+",D2="+args[3]+",R3=" +args[4]+"D3=,"+args[5]+",K=" +args[6]);
+        }
     }
 
     /**
@@ -80,10 +107,10 @@ public class Main {
         }
 
         if (accountBalance > loan2.getDailyRate() && loan2.getStartsInDays() > 0) {
-            
+
             System.out.println();
             System.out.println("Computing Days of Lighting: " + loan2);
-            
+
             //proceed to compute the days of powe and adjust balance
             int charge_for_loan2 = 0;
             int days_of_power_loan2 = 0;
@@ -102,7 +129,7 @@ public class Main {
                     break;
                 }
             }
-            
+
             System.out.println("Charge for loan2: " + charge_for_loan2 + "/-");
 
             //accountBalance -= charge_for_loan2;
@@ -116,19 +143,19 @@ public class Main {
         if (accountBalance > loan3.getDailyRate() && loan3.getStartsInDays() > 0) {
             System.out.println();
             System.out.println("Computing Days of Lighting: " + loan3);
-            
+
             int charge_for_loan3 = accountBalance;
-            
+
             System.out.println("Charge for loan2: " + charge_for_loan3 + "/-");
-            
+
             int days_of_power_loan3 = (accountBalance / loan3.getDailyRate());
             total_days_of_power += days_of_power_loan3;
-            
+
             System.out.println("Current account balance after loan3: " + (accountBalance -= charge_for_loan3) + "/-");
             System.out.println("Days of Power: " + days_of_power_loan3);
             System.out.println("Total Days of Power after loan3: " + total_days_of_power);
         }
-        
+
         System.out.println();
         System.out.println("Total Computed Days of Power: " + total_days_of_power);
         return total_days_of_power;
