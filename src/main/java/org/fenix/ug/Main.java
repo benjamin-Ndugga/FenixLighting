@@ -11,7 +11,9 @@ public class Main {
 
     public static void main(String[] args) {
         //get_days_of_power(1000, 3, 500, 10, 1500, 7, 21000);
-        get_days_of_power(3000, 3, 500, 10, 1500, 7, 700000);
+        //get_days_of_power(3000, 3, 500, 10, 1500, 7, 700000);
+        //get_days_of_power(1300, 0, 500, 0, 1500, 7, 10000);
+        get_days_of_power(10000, 3, 500, 10, 1500, 7, 11000);
     }
 
     /**
@@ -38,10 +40,10 @@ public class Main {
         loans.add(new Loan(R2, D2));
         loans.add(new Loan(R3, D3));
 
-        
         //sort these loans based on the the start days 
         Collections.sort(loans);
-        System.out.println("Taking Customer loans in the order: " + loans);
+        System.out.println("Amount Paid: " + K + "/-");
+        System.out.println("Taking Customer loans in the order: " + loans + "\n");
 
         //pick the loan that starts running first
         Loan loan1 = loans.get(0);
@@ -49,9 +51,9 @@ public class Main {
         Loan loan3 = loans.get(2);
 
         //check the current balance Value if is above rate for the day
-        if (accountBalance > loan1.getDailyRate()) {
+        if (accountBalance > loan1.getDailyRate() && loan1.getStartsInDays() > 0) {
             System.out.println("Computing Days of Lighting: " + loan1);
-            //proceed to compute the days of powe and adjust balance
+            //proceed to compute the days of power and adjust balance
             int charge_for_loan1 = 0;
             int days_of_power_loan1 = 0;
 
@@ -59,31 +61,49 @@ public class Main {
                 charge_for_loan1 += loan1.getDailyRate();
                 total_days_of_power += 1;
                 days_of_power_loan1 += 1;
+
+                //update the current balance for this lighting
+                accountBalance -= charge_for_loan1;
+
+                //check if the account balance has fallen below rate and break
+                if (accountBalance < loan1.getDailyRate()) {
+                    break;
+                }
+
             }
             System.out.println("Charge for loan1: " + charge_for_loan1 + "/-");
 
-            accountBalance -= charge_for_loan1;
+            //accountBalance -= charge_for_loan1;
             System.out.println("Current account balance after loan1 : " + accountBalance + "/-");
             System.out.println("Days of Power: " + days_of_power_loan1);
             System.out.println("Total Days of Power after loan1 : " + total_days_of_power);
         }
 
-        if (accountBalance > loan2.getDailyRate()) {
+        if (accountBalance > loan2.getDailyRate() && loan2.getStartsInDays() > 0) {
             System.out.println();
             System.out.println("Computing Days of Lighting: " + loan2);
             //proceed to compute the days of powe and adjust balance
             int charge_for_loan2 = 0;
             int days_of_power_loan2 = 0;
-            
+
             for (int i = loan2.getStartsInDays(); i < loan3.getStartsInDays(); i++) {
                 //System.out.println(i);
                 charge_for_loan2 += loan2.getDailyRate();
                 total_days_of_power += 1;
                 days_of_power_loan2 += 1;
+
+                //update the current balance for this lighting
+                accountBalance -= charge_for_loan2;
+
+                //check if the account balance has fallen below rate and break
+                if (accountBalance < loan2.getDailyRate()) {
+                    break;
+                }
+
             }
             System.out.println("Charge for loan2: " + charge_for_loan2 + "/-");
 
-            accountBalance -= charge_for_loan2;
+            //accountBalance -= charge_for_loan2;
             System.out.println("Current account balance after loan2: " + accountBalance + "/-");
             System.out.println("Days of Power: " + days_of_power_loan2);
             System.out.println("Total Days of Power after loan2: " + total_days_of_power);
@@ -91,12 +111,12 @@ public class Main {
         }
 
         //compute days of power for loan3 if the account balance is sufficient
-        if (accountBalance > loan3.getDailyRate()) {
+        if (accountBalance > loan3.getDailyRate() && loan3.getStartsInDays() > 0) {
             System.out.println();
             System.out.println("Computing Days of Lighting: " + loan3);
             int charge_for_loan3 = accountBalance;
             System.out.println("Charge for loan2: " + charge_for_loan3 + "/-");
-            int days_of_power_loan3= (accountBalance / loan3.getDailyRate());
+            int days_of_power_loan3 = (accountBalance / loan3.getDailyRate());
             total_days_of_power += days_of_power_loan3;
             System.out.println("Current account balance after loan3: " + (accountBalance -= charge_for_loan3) + "/-");
             System.out.println("Days of Power: " + days_of_power_loan3);
