@@ -18,8 +18,8 @@ public class Main {
 
             if (args.length != 7) {
                 System.out.println("Missing arguments:");
-                System.out.println(">>R1 D1 R2 D2 R3 D3 K"+"\nWhere:");
-                
+                System.out.println(">>R1 D1 R2 D2 R3 D3 K" + "\nWhere:");
+
                 System.out.println("R1 - daily rate1 loan1");
                 System.out.println("D1 - start in days loan1");
                 System.out.println("R2 - daily rate1 loan2");
@@ -32,14 +32,14 @@ public class Main {
             }
 
             System.out.println("Running program with arguments:");
-            System.out.println("R1="+args[0]+",D1="+args[1]+",R2="+args[2]+",D2="+args[3]+",R3=" +args[4]+"D3=,"+args[5]+",K=" +args[6]);
-            
+            System.out.println("R1=" + args[0] + ",D1=" + args[1] + ",R2=" + args[2] + ",D2=" + args[3] + ",R3=" + args[4] + "D3=," + args[5] + ",K=" + args[6]);
+
             get_days_of_power(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]), Integer.parseInt(args[6]));
         } catch (NumberFormatException ex) {
-            
-            System.out.println("Invalid argument: "+ex.getLocalizedMessage());
-            
-            System.out.println("R1="+args[0]+",D1="+args[1]+",R2="+args[2]+",D2="+args[3]+",R3=" +args[4]+"D3=,"+args[5]+",K=" +args[6]);
+
+            System.out.println("Invalid argument: " + ex.getLocalizedMessage());
+
+            System.out.println("R1=" + args[0] + ",D1=" + args[1] + ",R2=" + args[2] + ",D2=" + args[3] + ",R3=" + args[4] + "D3=," + args[5] + ",K=" + args[6]);
         }
     }
 
@@ -144,19 +144,19 @@ public class Main {
             System.out.println();
             System.out.println("Computing Days of Lighting: " + loan3);
 
-            int charge_for_loan3 = accountBalance;
-
-            System.out.println("Charge for loan2: " + charge_for_loan3 + "/-");
+            System.out.println("Charge for loan2: " + accountBalance + "/-");
 
             int days_of_power_loan3 = (accountBalance / loan3.getDailyRate());
             total_days_of_power += days_of_power_loan3;
 
-            System.out.println("Current account balance after loan3: " + (accountBalance -= charge_for_loan3) + "/-");
+            //System.out.println("Current account balance after loan3: " + (accountBalance -= charge_for_loan3) + "/-");
+            System.out.println("Current account balance after loan3: " + (accountBalance %= loan3.getDailyRate()) + "/-");
             System.out.println("Days of Power: " + days_of_power_loan3);
             System.out.println("Total Days of Power after loan3: " + total_days_of_power);
         }
 
         System.out.println();
+        System.out.println("Total Balance left on the account "+accountBalance+"/-");
         System.out.println("Total Computed Days of Power: " + total_days_of_power);
         return total_days_of_power;
     }

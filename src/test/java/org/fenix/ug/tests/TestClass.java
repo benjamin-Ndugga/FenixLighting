@@ -8,8 +8,10 @@ import static org.fenix.ug.Main.get_days_of_power;
  * @author Benjamin E Ndugga
  */
 public class TestClass {
-    
- 
+
+    public static void main(String[] args) {
+        System.out.println(10000 % 1500);
+    }
 
     public void testDaysOfPowerMethod() {
         assertEquals(get_days_of_power(0, 0, 0, 0, 0, 0, 0), 0);

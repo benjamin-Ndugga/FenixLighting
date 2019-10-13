@@ -101,5 +101,6 @@ Current account balance after loan3: 0/-
 Days of Power: 25
 Total Days of Power after loan3: 32
 
+Total Balance left on the account 0/-
 Total Computed Days of Power: 32
 ```
