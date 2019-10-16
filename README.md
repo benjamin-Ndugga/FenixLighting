@@ -84,23 +84,26 @@ Amount Paid: 21000/-
 Taking Customer loans in the order: [Loan{dailyRate=1000, startsInDays=3}, Loan{dailyRate=1500, startsInDays=7}, Loan{dailyRate=500, startsInDays=10}]
 
 Computing Days of Lighting: Loan{dailyRate=1000, startsInDays=3}
+Computing Loan1 at rate: 1000
 Charge for loan1: 4000/-
 Current account balance after loan1 : 17000/-
 Days of Power: 4
 Total Days of Power after loan1 : 4
 
 Computing Days of Lighting: Loan{dailyRate=1500, startsInDays=7}
-Charge for loan2: 4500/-
-Current account balance after loan2: 12500/-
+Computing Loan2 at rate: 2500
+Charge for loan2: 7500/-
+Current account balance after loan2: 9500/-
 Days of Power: 3
 Total Days of Power after loan2: 7
 
 Computing Days of Lighting: Loan{dailyRate=500, startsInDays=10}
-Charge for loan2: 12500/-
-Current account balance after loan3: 0/-
-Days of Power: 25
-Total Days of Power after loan3: 32
+Computing Loan3 at rate: 3000
+Charge for loan3: 9500/-
+Current account balance after loan3: 500/-
+Days of Power: 3
+Total Days of Power after loan3: 10
 
-Total Balance left on the account 0/-
-Total Computed Days of Power: 32
+Total Balance left on the account 500/-
+Total Computed Days of Power: 10
 ```

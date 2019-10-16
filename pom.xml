@@ -48,5 +48,4 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-    <description>1000 3 500 10 1500 7 21000</description>
 </project>
